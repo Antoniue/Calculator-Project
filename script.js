@@ -36,3 +36,9 @@ function operate(num1, operator, num2)
     if(operator == "//")
     return root(num1);
 }
+
+let num1;
+let num2;
+let operator = "";
+const buttons = document.querySelectorAll('.butt');
+buttons.addEventListener();
