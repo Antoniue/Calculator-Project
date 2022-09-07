@@ -70,7 +70,7 @@ function writeScreen(placeholder)
     {
         mathArray[0] = screen.textContent;
         mathArray[1] = '√';
-        mathArray[2] = '';
+        mathArray[2] = '1';
         summarize(mathArray);
     }
 
@@ -79,10 +79,18 @@ function writeScreen(placeholder)
         mathArray[1] = placeholder; //logs it as operator in the array
     }
     
-    else if(isNaN(placeholder) && mathArray[1] != '')
+    else if(isNaN(placeholder) && mathArray[1] != '' && mathArray[2] != '')
     {
         summarize(mathArray);
         mathArray[1] = placeholder;
+    }
+    else if(isNaN(placeholder) && mathArray[1] != '' && mathArray[2] == '')
+    {
+        mathArray[1] = placeholder;
+        for(let index = 0; index < operators.length; index++)
+        {
+        operators[index].style.backgroundColor = 'rgb(66, 66, 66)';
+        }
     }
 
     else if(mathArray[1] == '') //if there isn't an operator (checking if we should log this as num1)
@@ -117,7 +125,13 @@ function writeScreen(placeholder)
 
 function summarize(array)
 {
-    console.log(mathArray);
+    if(mathArray[1] == '/' && mathArray[2] == 0)
+    {
+        clearAll();
+        alert('you cheeky bastard, calculator was cleared');
+    }
+    if(mathArray[0] != '' && mathArray[1] != '' && mathArray[2] != '')
+    {
     let screen = document.querySelector('.screen');
     mathArray[0] = operate(array[0], array[1], array[2]);
     screen.textContent = mathArray[0];
@@ -126,6 +140,7 @@ function summarize(array)
     for(let index = 0; index < operators.length; index++)
     {
     operators[index].style.backgroundColor = 'rgb(66, 66, 66)';
+    }
     }
 }
 function clearAll()
