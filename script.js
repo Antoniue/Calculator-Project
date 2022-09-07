@@ -74,8 +74,16 @@ function writeScreen(placeholder)
         summarize(mathArray);
     }
 
-    else if(isNaN(placeholder)) //checks if this is an operator
+    else if(isNaN(placeholder) && mathArray[1] == '') //checks if this is an operator and if its the first operator
+    {
         mathArray[1] = placeholder; //logs it as operator in the array
+    }
+    
+    else if(isNaN(placeholder) && mathArray[1] != '')
+    {
+        summarize(mathArray);
+        mathArray[1] = placeholder;
+    }
 
     else if(mathArray[1] == '') //if there isn't an operator (checking if we should log this as num1)
     {
