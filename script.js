@@ -52,8 +52,11 @@ function operate(num1, operator, num2)
 
 function writeScreen(placeholder)
 {
+    let screentext = screen.textContent;
     if(placeholder == '.') //if input is a dot we need to add it to the num
     {
+        if(!(screentext.includes('.')))
+        {
         if(screen.textContent == mathArray[0])
         {
             mathArray[0] = mathArray[0] + '.';
@@ -63,6 +66,7 @@ function writeScreen(placeholder)
         {
             mathArray[2] = mathArray[2] + '.';
             screen.textContent = mathArray[2];
+        }
         }
     }
 
