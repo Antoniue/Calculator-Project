@@ -115,11 +115,19 @@ function summarize(array)
     screen.textContent = mathArray[0];
     mathArray[1] = '';
     mathArray[2] = '';
+    for(let index = 0; index < operators.length; index++)
+    {
+    operators[index].style.backgroundColor = 'rgb(66, 66, 66)';
+    }
 }
 function clearAll()
 {
     mathArray = ['','',''];
     screen.textContent = '0';
+    for(let index = 0; index < operators.length; index++)
+    {
+    operators[index].style.backgroundColor = 'rgb(66, 66, 66)';
+    }
 }
 
 let screen = document.querySelector('.screen');
@@ -143,5 +151,14 @@ for(let index = 0; index < buttons.length; index++)
     buttons[index].addEventListener(
         'click', () =>
         writeScreen(buttons[index].textContent)
+    )
+}
+
+const operators = document.querySelectorAll('#operator');
+for(let index = 0; index < operators.length; index++)
+{
+    operators[index].addEventListener(
+        'click', () =>
+        operators[index].style.backgroundColor = 'orange'
     )
 }
